@@ -76,7 +76,7 @@ tm.define("tmapp.CreditScene", {
             .setScale(0.5, 0.5);
 
         //SNS
-        this.btn = tmapp.Button(SC_W*0.55, 90, "Tweet best score", {flat: appMain.buttonFlat, fontSize:40})
+        this.btn = tm.Extension.Button(SC_W*0.55, 90, "Tweet best score", {flat: appMain.buttonFlat, fontSize:40})
             .addChildTo(this)
             .setPosition(SC_W*0.5, SC_H*0.83)
             .addEventListener("pushed", function() {

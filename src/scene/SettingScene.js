@@ -33,7 +33,7 @@ tm.define("tmapp.SettingScene", {
 
         //戻るボタン
         var width = SC_W, height = 100;
-        tmapp.Button(width, height, "RETURN TO TITLE", {flat: appMain.buttonFlat, fontSize:50})
+        tm.Extension.Button(width, height, "RETURN TO TITLE", {flat: appMain.buttonFlat, fontSize:50})
             .addChildTo(this)
             .setPosition(SC_W*0.5, SC_H*0.85)
             .addEventListener("pushed", function() {

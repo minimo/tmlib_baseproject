@@ -38,7 +38,7 @@ tm.define("tmapp.PauseScene", {
         var param = {fillStyle:'rgba(0,80,0,1)', lineWidth:4};
 
         //戻るボタン
-        tmapp.Button(width, height, "RESUME", {flat: appMain.buttonFlat})
+        tm.Extension.Button(width, height, "RESUME", {flat: true})
             .addChildTo(this)
             .setPosition(SC_W*0.5, SC_H*0.76)
             .addEventListener("pushed", function() {
@@ -46,7 +46,7 @@ tm.define("tmapp.PauseScene", {
             });
 
         //終了ボタン
-        tmapp.Button(width, height, "RETURN TO TITLE", {flat: appMain.buttonFlat})
+        tm.Extension.Button(width, height, "RETURN TO TITLE", {flat: true})
             .addChildTo(this)
             .setPosition(SC_W*0.5, SC_H*0.85)
             .addEventListener("pushed", function() {
@@ -120,7 +120,7 @@ tm.define("tmapp.ConfirmDialog", {
         }
 
         //ＹＥＳ
-        tmapp.Button(width, height, button[0], {flat: appMain.buttonFlat})
+        tm.Extension.Button(width, height, button[0], {flat: appMain.buttonFlat})
             .addChildTo(this)
             .setPosition(SC_W*0.5, SC_H*0.5)
             .addEventListener("pushed", function() {
@@ -129,7 +129,7 @@ tm.define("tmapp.ConfirmDialog", {
             });
 
         //ＮＯ
-        tmapp.Button(width, height, button[1], {flat: appMain.buttonFlat})
+        tm.Extension.Button(width, height, button[1], {flat: appMain.buttonFlat})
             .addChildTo(this)
             .setPosition(SC_W*0.5, SC_H*0.58)
             .addEventListener("pushed", function() {
@@ -189,7 +189,7 @@ tm.define("tmapp.AlertDialog", {
         }
 
         //ボタン
-        tmapp.Button(width, height, param.button, {flat: appMain.buttonFlat})
+        tm.Extension.Button(width, height, param.button, {flat: appMain.buttonFlat})
             .addChildTo(this)
             .setPosition(SC_W*0.5, SC_H*0.55)
             .addEventListener("pushed", function() {

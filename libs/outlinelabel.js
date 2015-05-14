@@ -26,7 +26,6 @@ tm.display = tm.display || {};
         init: function(text, size) {
             this.superInit();
 
-            text = $trans(text);
             this.outlineColor = "black";
 
             //アウトライン作成

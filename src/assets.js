@@ -5,10 +5,10 @@
  *  This Program is MIT license.
  */
 
-tmapp.assets = [];
+assets = [];
 
-tmapp.assets["main"] = {
+assets["main"] = {
     //Font
     "UbuntuMono":       "font/UbuntuMono-Bold.ttf",
-    "Orbitron-Regular": "font/Orbitron-Regular.ttf",
+    "Orbitron": "font/Orbitron-Regular.ttf",
 }

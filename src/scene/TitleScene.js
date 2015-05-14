@@ -10,8 +10,8 @@ tm.define("tmapp.TitleScene", {
     superClass: tm.app.Scene,
 
     //フォントパラメータ
-    labelParam: {fontFamily:"Yasashisa", align: "center", baseline:"middle", outlineWidth:2, fontWeight:700 },
-    scoreParam: {fontFamily:"Yasashisa", align: "left", baseline:"middle", outlineWidth:2 },
+    labelParam: {fontFamily:"Orbitron", align: "center", baseline:"middle", outlineWidth:2, fontWeight:700 },
+    scoreParam: {fontFamily:"Orbitron", align: "left", baseline:"middle", outlineWidth:2 },
 
     bgColor: 'rgba(50, 150, 50, 1)',
 
@@ -23,6 +23,18 @@ tm.define("tmapp.TitleScene", {
         this.bg = tm.display.RectangleShape({width: SC_W, height: SC_H, fillStyle: appMain.bgColor, strokeStyle: appMain.bgColor})
             .addChildTo(this)
             .setPosition(SC_W*0.5, SC_H*0.5)
+
+        tm.display.OutlineLabel("tmlib sample", 80)
+            .addChildTo(this)
+            .setParam(this.labelParam)
+            .setPosition(SC_W*0.5, SC_H*0.3);
+
+        var lb = tm.display.OutlineLabel("touch start", 50)
+            .addChildTo(this)
+            .setParam(this.labelParam)
+            .setPosition(SC_W*0.5, SC_H*0.8);
+        lb.tweener.clear().wait(300).to({alpha:0}, 1000, "easeInSine").wait(100).to({alpha:1}, 1000, "easeOutSine").setLoop(true);
+            
 
         //目隠し
         this.mask = tm.display.RectangleShape({width: SC_W, height: SC_H, fillStyle: "rgba(0, 0, 0, 1.0)", strokeStyle: "rgba(0, 0, 0, 1.0)"})
@@ -55,5 +67,6 @@ tm.define("tmapp.TitleScene", {
     //タッチorクリック終了処理
     ontouchend: function(e) {
         tm.sound.WebAudio.unlock();
+        appMain.pushScene(tmapp.MainScene());
     },
 });

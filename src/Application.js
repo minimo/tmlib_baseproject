@@ -40,7 +40,7 @@ tm.define("tmapp.CanvasApp", {
 
         //アセット読み込み
         var loadingScene = tmapp.LoadingScene({
-            assets: tmapp.assets["main"],
+            assets: assets["main"],
             width: SC_W,
             height: SC_H,
             bgColor: 'rgba(0, 0, 0, 1)',
@@ -53,6 +53,16 @@ tm.define("tmapp.CanvasApp", {
     },
 
     _onLoadAssets: function() {
+/*
+        appMain.sounds.add("titleBGM");
+*/
+        //Admob setting
+        if (ENABLE_PHONEGAP && AdMob) {
+            AdMob.createBanner({
+                adId:admobid.banner,
+                position: AdMob.AD_POSITION.BOTTOM_CENTER
+            });
+        }
     },
 
     exitApp: function() {

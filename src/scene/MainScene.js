@@ -66,7 +66,7 @@ tm.define("tmapp.MainScene", {
         }
 
         //ポーズボタン
-        this.pause = tmapp.Button(200, 60, "PAUSE", {flat: appMain.buttonFlat, fontSize:40})
+        this.pause = tm.Extension.Button(200, 60, "PAUSE", {flat: true, fontSize:40})
             .addChildTo(this)
             .setPosition(SC_W*0.84, 90)
             .addEventListener("pushed", function() {
@@ -83,12 +83,16 @@ tm.define("tmapp.MainScene", {
     update: function() {
     },
 
-
     //ゲームオーバー
     gameover: function() {
     },
 
-    //タッチorクリック終了処理
+    ontouchesstart: function(e) {
+    },
+
+    ontouchesmove: function(e) {
+    },
+
     ontouchesend: function(e) {
     },
 });
