@@ -33,7 +33,7 @@ tm.define("tmapp.CanvasApp", {
         tmapp.core = this;
 
         //サウンドセット
-        this.sounds = tm.Extension.SoundSet();
+        this.sounds = tm.extension.SoundSet();
 
         //設定情報の読み込み
         this.loadConfig();

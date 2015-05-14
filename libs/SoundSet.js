@@ -6,10 +6,10 @@
  *
  */
 
-tm.Extension = tm.Extension || {};
+tm.extension = tm.extension || {};
 
 //サウンド管理
-tm.define("tm.Extension.SoundSet", {
+tm.define("tm.extension.SoundSet", {
 
     elements: null,
 
