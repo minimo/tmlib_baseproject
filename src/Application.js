@@ -57,7 +57,7 @@ tm.define("tmapp.CanvasApp", {
         appMain.sounds.readAsset();
 
         //Admob setting
-        if (ENABLE_PHONEGAP &&  AdMob) {
+        if (ENABLE_PHONEGAP && USE_ADMOB && AdMob) {
             AdMob.createBanner({
                 adId:admobid.banner,
                 position: AdMob.AD_POSITION.BOTTOM_CENTER
