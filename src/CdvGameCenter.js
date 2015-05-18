@@ -5,6 +5,9 @@
  *  This Program is MIT license.
  */
 
+//GameCenter使用フラグ
+USE_GAMECENTER = true;
+
 //GAMECENTER(GooglePlay)使用可能フラグ
 ENABLE_GAMECENTER = false;
 DEBUG_GAMECENTER = false;
@@ -55,21 +58,6 @@ var showLeadersBoard = function(id) {
         });
         return true;
     }
-    if (DEVICE_ANDROID) {
-        if (id == "") {
-            googleplaygame.showAllLeaderboards();
-        } else {
-            //IDをGooglePlay向けに変換
-            if (id == "Normal_")    id = "CgkI-I-vk7YTEAIQAA";
-            if (id == "Normal_RJ")  id = "CgkI-I-vk7YTEAIQAQ";
-            if (id == "Hard_")      id = "CgkI-I-vk7YTEAIQAg";
-            if (id == "Hard_RJ")    id = "CgkI-I-vk7YTEAIQAw";
-            googleplaygame.showLeaderboard({
-                leaderboardId: id,
-            });
-        }
-        return true;
-    }
 }
 
 //GameCenterにスコアを登録
@@ -90,23 +78,6 @@ var submitScore = function(mode, returnJoker, score) {
                 leaderboardId: id,
             });
     }
-    if (DEVICE_ANDROID) {
-        var id = "";
-        if (mode == GAMEMODE_NORMAL && !returnJoker) id = "CgkI-I-vk7YTEAIQAA";
-        if (mode == GAMEMODE_NORMAL && returnJoker)  id = "CgkI-I-vk7YTEAIQAQ";
-        if (mode == GAMEMODE_HARD   && !returnJoker) id = "CgkI-I-vk7YTEAIQAg";
-        if (mode == GAMEMODE_HARD   && returnJoker)  id = "CgkI-I-vk7YTEAIQAw";
-        googleplaygame.submitScore({
-                score: score,
-                leaderboardId: id,
-            },
-            function() {
-                if (DEBUG_GAMECENTER) AdvanceAlert('スコア登録に成功しました');
-            },
-            function() {
-                if (DEBUG_GAMECENTER) AdvanceAlert('スコア登録に失敗しました');
-            });
-    }
 }
 
 //GameCenterに実績登録
@@ -122,19 +93,6 @@ var reportAchievements = function(name, percent) {
             }, {
                 achievementId: name,    //GameCenterは実績名とidが同一
                 percent: "100"
-            });
-    }
-    if (DEVICE_ANDROID) {
-        if (tmapp.achievementList[name].id === undefined) return false;
-        if (tmapp.achievementList[name].id == "") return false;
-        googleplaygame.unlockAchievement({
-                achievementId: tmapp.achievementList[name].id
-            },
-            function(){
-                if (DEBUG_GAMECENTER) AdvanceAlert('実績登録に成功しました');
-            },
-            function(){
-                if (DEBUG_GAMECENTER) AdvanceAlert('実績登録に失敗しました');
             });
     }
     return true;

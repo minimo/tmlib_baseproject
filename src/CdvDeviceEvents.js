@@ -29,7 +29,7 @@ var onDeviceReady = function () {
     ENABLE_PHONEGAP = true;
 
     //AdMob plugin
-    if (AdMob) {
+    if (USE_ADMOB && AdMob) {
         var defaultOptions = {
             bannerId: admobid.banner,
             interstitialId: admobid.interstitial,
@@ -43,11 +43,10 @@ var onDeviceReady = function () {
     }
 
     //Game Center Plugin
-    if (DEVICE_IOS) {
-        gamecenter.auth(onGamecenterSuccess, onGamecenterFailure);
-    }
-    if (DEVICE_ANDROID) {
-        googleplaygame.auth(onGamecenterSuccess, onGamecenterFailure);
+    if (USE_GAMECENTER) {
+        if (DEVICE_IOS) {
+            gamecenter.auth(onGamecenterSuccess, onGamecenterFailure);
+        }
     }
 
     //Social Message
@@ -68,15 +67,12 @@ var onResume = function() {
     if (DEBUG_PHONEGAP) AdvanceAlert('resumeイベントが発火しました');
 
     //GAME CENTERに再度接続を行う
-    if (DEVICE_IOS) {
-        if (!ENABLE_GAMECENTER) {
-            gamecenter.auth(onGamecenterSuccess, onGamecenterFailure);
-        }
-        return;
-    }
-    if (DEVICE_ANDROID) {
-        if (!ENABLE_GAMECENTER) {
-            googleplaygame.auth(onGamecenterSuccess, onGamecenterFailure);
+    if (USE_GAMECENTER) {
+        if (DEVICE_IOS) {
+            if (!ENABLE_GAMECENTER) {
+                gamecenter.auth(onGamecenterSuccess, onGamecenterFailure);
+            }
+            return;
         }
     }
 }
