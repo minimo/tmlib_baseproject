@@ -23,6 +23,13 @@ tm.define("tm.extension.SoundSet", {
         this.elements = [];
     },
 
+    readAsset: function() {
+        for (var key in tm.asset.Manager.assets) {
+            var obj = tm.asset.Manager.get(key);
+            if (obj._className == "sound") this.add(key);
+        }
+    },
+
     add: function(name, url) {
         if (name === undefined) return null;
         url = url || null;

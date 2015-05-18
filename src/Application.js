@@ -53,11 +53,11 @@ tm.define("tmapp.CanvasApp", {
     },
 
     _onLoadAssets: function() {
-/*
-        appMain.sounds.add("titleBGM");
-*/
+
+        appMain.sounds.readAsset();
+
         //Admob setting
-        if (ENABLE_PHONEGAP && AdMob) {
+        if (ENABLE_PHONEGAP &&  AdMob) {
             AdMob.createBanner({
                 adId:admobid.banner,
                 position: AdMob.AD_POSITION.BOTTOM_CENTER
