@@ -46,6 +46,7 @@ tm.define("tm.extension.SoundSet", {
         if (name === undefined) return false;
         for (var i = 0; i < this.elements.length; i++) {
             if (this.elements[i].name == name) {
+                this.elements[i].remove();
                 this.elements[i] = null;
                 this.elements.splice(i, 1);
                 return true;
@@ -190,5 +191,9 @@ tm.define("tm.extension.SoundElement", {
         this.volume = vol;
         this.media.volume = this.volume*0.1;
         return this;
+    },
+
+    remove: function() {
+        this.media = null;
     },
 });
