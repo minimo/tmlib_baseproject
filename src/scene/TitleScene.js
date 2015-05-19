@@ -24,7 +24,7 @@ tm.define("tmapp.TitleScene", {
             .addChildTo(this)
             .setPosition(SC_W*0.5, SC_H*0.5)
 
-        tm.display.OutlineLabel("TMLIB SAMPLE", 80)
+        tm.display.OutlineLabel("SAMPLE", 80)
             .addChildTo(this)
             .setParam(this.labelParam)
             .setPosition(SC_W*0.5, SC_H*0.3);
