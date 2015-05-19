@@ -5,7 +5,14 @@
  *  This Program is MIT license.
  */
 
-//SpriteのsetFrameIndexをちょっと改造
+//トリミング開始位置設定
+tm.display.Sprite.prototype.setFrameTrimming = function(x, y, width, height) {
+    this.frameTrimX = x || 0;
+    this.frameTrimY = y || 0;
+    this.frameTrimW = width || this.image.width - this.frameTrimX;
+    this.frameTrimH = height || this.image.height - this.frameTrimY;
+    return this;
+}
 tm.display.Sprite.prototype.setFrameIndex = function(index, width, height) {
 
     //テクスチャのトリミング設定
@@ -30,14 +37,6 @@ tm.display.Sprite.prototype.setFrameIndex = function(index, width, height) {
 
     this._frameIndex = index;
 
-    return this;
-}
-//トリミング開始位置設定
-tm.display.Sprite.prototype.setFrameTrimming = function(x, y, width, height) {
-    this.frameTrimX = x || 0;
-    this.frameTrimY = y || 0;
-    this.frameTrimW = width || this.image.width - this.frameTrimX;
-    this.frameTrimH = height || this.image.height - this.frameTrimY;
     return this;
 }
 
