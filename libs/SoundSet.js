@@ -24,20 +24,34 @@ tm.define("tm.extension.SoundSet", {
     },
 
     readAsset: function() {
+        //読み込み済みアセットを調べて、AudioContextを全て登録する
         for (var key in tm.asset.Manager.assets) {
             var obj = tm.asset.Manager.get(key);
-            if (obj._className == "sound") this.add(key);
+            var context = obj.context;
+            if (context instanceof AudioContext) this.add(key);
         }
     },
 
-    add: function(name, url) {
-        if (name === undefined) return null;
-        url = url || null;
+    add: function(name) {
+        if (name === undefined) return false;
+        if (this.find(name))return false;
 
-        var e = tm.Extension.SoundElement(name);
+        var e = tm.extension.SoundElement(name);
         if (!e.media) return false;
         this.elements.push(e);
         return true;
+    },
+
+    remove: function(name) {
+        if (name === undefined) return false;
+        for (var i = 0; i < this.elements.length; i++) {
+            if (this.elements[i].name == name) {
+                this.elements[i] = null;
+                this.elements.splice(i, 1);
+                return true;
+            }
+        }
+        return false;
     },
 
     find: function(name) {
@@ -124,18 +138,13 @@ tm.define("tm.extension.SoundSet", {
 });
 
 //SoundElement Basic
-tm.define("tm.Extension.SoundElement", {
+tm.define("tm.extension.SoundElement", {
 
-    type: 0,
     name: null,
-    url: null,
     media: null,
     volume: 10,
-    status: null,
-    message: null,
 
-    init: function(type, name) {
-        this.type = type;
+    init: function(name) {
         this.name = name;
         this.media = tm.asset.AssetManager.get(name);
         if (!this.media) {
