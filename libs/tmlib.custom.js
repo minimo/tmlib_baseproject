@@ -1,5 +1,5 @@
 /*
- *  tmCustom.js
+ *  tmlib.custom.js
  *  2015/03/12
  *  @auther minimo  
  *  This Program is MIT license.
@@ -81,6 +81,43 @@ tm.display.AnimationSprite.prototype._normalizeFrame = function() {
         }
     }
 }
+
+//トリミング開始位置設定
+tm.display.AnimationSprite.prototype.setFrameTrimming = function(x, y, width, height) {
+    this.frameTrimX = x || 0;
+    this.frameTrimY = y || 0;
+    this.frameTrimW = width || this.image.width - this.frameTrimX;
+    this.frameTrimH = height || this.image.height - this.frameTrimY;
+    return this;
+}
+tm.display.AnimationSprite.prototype._calcFrames = function(frame) {
+    var frames = this.frames = [];
+    
+    // Trimmig setting for texture.
+    var sx = this.frameTrimX || 0;
+    var sy = this.frameTrimY || 0;
+    var sw = this.frameTrimW || (this.image.width-sx);
+    var sh = this.frameTrimH || (this.image.height-sy);
+
+    var w = frame.width;
+    var h = frame.height;
+    var row = ~~(sw / w);
+    var col = ~~(sh / h);
+
+    if (!frame.count) frame.count = row*col;
+
+    for (var i=0,len=frame.count; i<len; ++i) {
+        var x   = sx+i%row;
+        var y   = sy+(i/row)|0;
+        var rect = {
+            x:x*w,
+            y:y*h,
+            width: w,
+            height: h
+        };
+        frames.push(rect);
+    }
+},
 
 //tm.display.Label拡張
 //パラメータ一括セット
