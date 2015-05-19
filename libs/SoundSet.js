@@ -175,6 +175,7 @@ tm.define("tm.extension.SoundElement", {
     pause: function () {
         if (!this.media) return this;
         this.media.pause();
+        return this;
     },
 
     stop: function() {
