@@ -9,6 +9,6 @@ assets = [];
 
 assets["main"] = {
     //Font
-    "UbuntuMono":       "font/UbuntuMono-Bold.ttf",
-    "Orbitron": "font/Orbitron-Regular.ttf",
+    "UbuntuMono":   "font/UbuntuMono-Bold.ttf",
+    "Orbitron":     "font/Orbitron-Regular.ttf",
 }
