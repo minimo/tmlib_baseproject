@@ -55,6 +55,7 @@ tm.define("tmapp.CanvasApp", {
     _onLoadAssets: function() {
 
         appMain.sounds.readAsset();
+        tmapp.createSpriteSheet();
 
         //Admob setting
         if (ENABLE_PHONEGAP && USE_ADMOB && AdMob) {
