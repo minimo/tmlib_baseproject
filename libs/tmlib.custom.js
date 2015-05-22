@@ -42,7 +42,7 @@ tm.display.Sprite.prototype.setFrameIndex = function(index, width, height) {
 }
 
 //tm.display.AnimationSprite拡張
-tm.display.AnimationSprite.prototype.currentAnimationName = null;
+tm.display.AnimationSprite.prototype.currentAnimationName = "";
 
 tm.display.AnimationSprite.prototype.gotoAndPlay = function(name) {
     name = (name !== undefined) ? name : "default";
