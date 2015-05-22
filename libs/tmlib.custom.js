@@ -31,7 +31,7 @@ tm.display.Sprite.prototype.setFrameIndex = function(index, width, height) {
 
     var x   = index%row;
     var y   = ~~(index/row);
-    this.srcRect.x = sx*tw;
+    this.srcRect.x = sx+x*tw;
     this.srcRect.y = sy+y*th;
     this.srcRect.width  = tw;
     this.srcRect.height = th;
