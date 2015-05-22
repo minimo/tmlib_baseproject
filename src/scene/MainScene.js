@@ -83,11 +83,6 @@ tm.define("tmapp.MainScene", {
     update: function() {
     },
 
-    //弾着エフェクト
-    addImpact: function(x, y) {
-        var sp = tm.display.Sprite
-    },
-
     //ゲームオーバー
     gameover: function() {
     },
