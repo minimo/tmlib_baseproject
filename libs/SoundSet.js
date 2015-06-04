@@ -24,35 +24,20 @@ tm.define("tm.extension.SoundSet", {
     },
 
     readAsset: function() {
-        //読み込み済みアセットを調べて、AudioContextを全て登録する
         for (var key in tm.asset.Manager.assets) {
             var obj = tm.asset.Manager.get(key);
-            var context = obj.context;
-            if (context instanceof AudioContext) this.add(key);
+            if (obj instanceof tm.sound.WebAudio) this.add(key);
         }
     },
 
-    add: function(name) {
-        if (name === undefined) return false;
-        if (this.find(name))return false;
+    add: function(name, url) {
+        if (name === undefined) return null;
+        url = url || null;
 
-        var e = tm.extension.SoundElement(name);
+        var e = tm.Extension.SoundElement(name);
         if (!e.media) return false;
         this.elements.push(e);
         return true;
-    },
-
-    remove: function(name) {
-        if (name === undefined) return false;
-        for (var i = 0; i < this.elements.length; i++) {
-            if (this.elements[i].name == name) {
-                this.elements[i].remove();
-                this.elements[i] = null;
-                this.elements.splice(i, 1);
-                return true;
-            }
-        }
-        return false;
     },
 
     find: function(name) {
@@ -139,11 +124,14 @@ tm.define("tm.extension.SoundSet", {
 });
 
 //SoundElement Basic
-tm.define("tm.extension.SoundElement", {
+tm.define("tm.Extension.SoundElement", {
 
     name: null,
+    url: null,
     media: null,
     volume: 10,
+    status: null,
+    message: null,
 
     init: function(name) {
         this.name = name;
@@ -176,7 +164,6 @@ tm.define("tm.extension.SoundElement", {
     pause: function () {
         if (!this.media) return this;
         this.media.pause();
-        return this;
     },
 
     stop: function() {
@@ -191,9 +178,5 @@ tm.define("tm.extension.SoundElement", {
         this.volume = vol;
         this.media.volume = this.volume*0.1;
         return this;
-    },
-
-    remove: function() {
-        this.media = null;
     },
 });
