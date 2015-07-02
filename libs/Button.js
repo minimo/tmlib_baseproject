@@ -6,7 +6,7 @@
  *
  */
 
-tm.extension = tm.Extension || {};
+tm.extension = tm.extension || {};
 
 //通常のボタン
 tm.define("tm.extension.Button", {
